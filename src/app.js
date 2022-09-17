@@ -3,17 +3,17 @@ import { resolve } from 'path';
 
 dotenv.config();
 
-import './src/database';
+import './database';
 
 import express from 'express';
 import cors from 'cors';
 // import helmet from 'helmet';
 
-import homeRoutes from './src/routes/home.js';
-import userRoutes from './src/routes/user.js';
-import tokenRoutes from './src/routes/token.js';
-import postRoutes from './src/routes/post.js';
-import mediaRoutes from './src/routes/media.js';
+import homeRoutes from './routes/home.js';
+import userRoutes from './routes/user.js';
+import tokenRoutes from './routes/token.js';
+import postRoutes from './routes/post.js';
+import mediaRoutes from './routes/media.js';
 
 const whiteList = [
   'https://apmelshaddai.aldairgc.com',
