@@ -8,9 +8,8 @@ class UserController {
       const { id, name, email } = newUser;
       return res.json({ id, name, email });
     } catch (err) {
-      return res.status(400).json({
-        errors: err.errors.map((e) => e.message),
-      });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -20,7 +19,8 @@ class UserController {
       const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
       return res.json(users);
     } catch (err) {
-      return res.json(null);
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -31,7 +31,8 @@ class UserController {
       const { id, name, email } = user;
       return res.json({ id, name, email });
     } catch (err) {
-      return res.json(null);
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -51,7 +52,7 @@ class UserController {
       return res.json({ id, name, email });
     } catch (err) {
       if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
-      return res.status(400).json({ errors: err });
+      return res.status(400).send(err);
     }
   }
 
@@ -69,9 +70,8 @@ class UserController {
       await user.destroy();
       return res.json({ userDeleted: true });
     } catch (err) {
-      return res.status(400).json({
-        errors: err.errors.map((e) => e.message),
-      });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 }

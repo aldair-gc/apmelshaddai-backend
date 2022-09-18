@@ -21,7 +21,8 @@ class PostController {
       });
       return res.json(posts);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -31,7 +32,7 @@ class PostController {
       return res.json(post);
     } catch (err) {
       if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
-      return res.status(400).json({ errors: err });
+      return res.status(400).send(err);
     }
   }
 
@@ -44,7 +45,8 @@ class PostController {
       const postUpdated = await post.update(req.body);
       return res.json(postUpdated);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -71,7 +73,8 @@ class PostController {
       if (!post) return res.status(400).json({ error: ['post inexistent'] });
       return res.json(post);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -84,7 +87,8 @@ class PostController {
       await post.destroy();
       return res.json({ postDeleted: true });
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 }

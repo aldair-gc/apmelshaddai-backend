@@ -6,7 +6,8 @@ class GroupController {
       const groups = await Group.findAll({ attributes: ['group'] });
       return res.json(groups);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -15,7 +16,8 @@ class GroupController {
       const group = await Group.create(req.body);
       return res.json(group);
     } catch (err) {
-      return res.status(400).json({ errors: ['this ID does not match a registered post'] });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 
@@ -26,8 +28,8 @@ class GroupController {
       await Group.destroy({ where: { id } });
       return res.json({ mediaDeleted: true });
     } catch (err) {
-      console.error(err);
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).send(err);
     }
   }
 }
