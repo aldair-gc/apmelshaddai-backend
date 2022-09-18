@@ -4,8 +4,9 @@ import Post from '../models/Post';
 import User from '../models/User';
 import Media from '../models/Media';
 import Link from '../models/Link';
+import Group from '../models/Group';
 
-const models = [Post, User, Media, Link];
+const models = [Post, User, Media, Link, Group];
 
 const connection = new Sequelize(databaseConfig);
 

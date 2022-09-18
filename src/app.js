@@ -15,6 +15,7 @@ import tokenRoutes from './routes/token';
 import postRoutes from './routes/post';
 import mediaRoutes from './routes/media';
 import linkRoutes from './routes/link';
+import groupRoutes from './routes/group';
 
 const whiteList = [
   'https://apmelshaddai.aldairgc.com',
@@ -52,6 +53,7 @@ class App {
     this.app.use('/post/', postRoutes);
     this.app.use('/media/', mediaRoutes);
     this.app.use('/link/', linkRoutes);
+    this.app.use('/group/', groupRoutes);
   }
 }
 
