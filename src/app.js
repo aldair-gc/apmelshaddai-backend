@@ -18,6 +18,7 @@ import linkRoutes from './routes/link';
 import groupRoutes from './routes/group';
 
 const whiteList = [
+  'https://apmelshaddai-server.aldairgc.com',
   'https://apmelshaddai.aldairgc.com',
 ];
 
