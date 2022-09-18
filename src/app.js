@@ -20,7 +20,7 @@ import groupRoutes from './routes/group';
 const whiteList = [
   'https://apmelshaddai-server.aldairgc.com',
   'https://apmelshaddai.aldairgc.com',
-  'http://127.0.0.1',
+  'http://127.0.0.1:5173',
 ];
 
 const corsOptions = {
