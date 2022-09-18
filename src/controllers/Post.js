@@ -30,7 +30,8 @@ class PostController {
       const post = await Post.create(req.body);
       return res.json(post);
     } catch (err) {
-      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).json({ errors: err });
     }
   }
 
