@@ -6,31 +6,17 @@ import Media from '../models/Media';
 const upload = multer(multerConfig).single('media');
 
 class MediaController {
-  async store(req, res) {
-    const { originalname, filename } = req.file;
-
-    if (originalname.includes('https://youtu.be/')) {
-      const youtubeId = originalname.replace('https://youtu.be/', '');
-
-      try {
-        const { post_id } = req.body;
-        const media = await Media.create({ originalname, filename: youtubeId, post_id });
-
-        return res.json(media);
-      } catch (e) {
-        return res.status(400).json({ errors: ['this ID does not match a registered post'] });
-      }
-    }
-
+  store(req, res) {
     return upload(req, res, async (err) => {
       if (err) return res.status(400).json({ errors: [err.code] });
-
       try {
+        const { originalname, filename } = req.file;
         const { post_id } = req.body;
         const media = await Media.create({ originalname, filename, post_id });
 
         return res.json(media);
       } catch (e) {
+        console.log(`\ntest\n\n${e}`);
         return res.status(400).json({ errors: ['this ID does not match a registered post'] });
       }
     });

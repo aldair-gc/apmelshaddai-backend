@@ -42,18 +42,16 @@ class UserController {
 
       if (!user) {
         return res.status(400).json({
-          erros: ['This user does not exist'],
+          errors: ['This user does not exist'],
         });
       }
-
       const updatedUser = await user.update(req.body);
       const { id, name, email } = updatedUser;
 
       return res.json({ id, name, email });
     } catch (err) {
-      return res.status(400).json({
-        errors: err.errors.map((e) => e.message),
-      });
+      if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+      return res.status(400).json({ errors: err });
     }
   }
 

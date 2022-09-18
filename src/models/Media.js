@@ -30,7 +30,7 @@ export default class Media extends Model {
       },
     }, {
       sequelize,
-      tableName: 'media',
+      tableName: 'medias',
     });
     return this;
   }

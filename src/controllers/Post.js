@@ -1,17 +1,28 @@
 import Post from '../models/Post';
 import Media from '../models/Media';
+import Link from '../models/Link';
 
 class PostController {
   async index(req, res) {
-    const posts = await Post.findAll({
-      attributes: ['id', 'group', 'title', 'text'],
-      order: [['id', 'DESC'], [Media, 'id', 'DESC']],
-      include: {
-        model: Media,
-        attributes: ['filename', 'url'],
-      },
-    });
-    res.json(posts);
+    try {
+      const posts = await Post.findAll({
+        attributes: ['id', 'group', 'title', 'text'],
+        order: [['id', 'DESC'], [Media, 'id', 'DESC'], [Link, 'id', 'DESC']],
+        include: [
+          {
+            model: Media,
+            attributes: ['filename', 'url'],
+          },
+          {
+            model: Link,
+            attributes: ['url'],
+          },
+        ],
+      });
+      return res.json(posts);
+    } catch (err) {
+      return res.status(400).json({ errors: err.errors.map((e) => e.message) });
+    }
   }
 
   async store(req, res) {
@@ -43,11 +54,17 @@ class PostController {
 
       const post = await Post.findByPk(id, {
         attributes: ['id', 'group', 'title', 'text'],
-        order: [['id', 'DESC'], [Media, 'id', 'DESC']],
-        include: {
-          model: Media,
-          attributes: ['filename', 'url'],
-        },
+        order: [['id', 'DESC'], [Media, 'id', 'DESC'], [Link, 'id', 'DESC']],
+        include: [
+          {
+            model: Media,
+            attributes: ['filename', 'url'],
+          },
+          {
+            model: Link,
+            attributes: ['url'],
+          },
+        ],
       });
 
       if (!post) return res.status(400).json({ error: ['post inexistent'] });

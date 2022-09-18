@@ -9,11 +9,12 @@ import express from 'express';
 import cors from 'cors';
 // import helmet from 'helmet';
 
-import homeRoutes from './routes/home.js';
-import userRoutes from './routes/user.js';
-import tokenRoutes from './routes/token.js';
-import postRoutes from './routes/post.js';
-import mediaRoutes from './routes/media.js';
+import homeRoutes from './routes/home';
+import userRoutes from './routes/user';
+import tokenRoutes from './routes/token';
+import postRoutes from './routes/post';
+import mediaRoutes from './routes/media';
+import linkRoutes from './routes/link';
 
 const whiteList = [
   'https://apmelshaddai.aldairgc.com',
@@ -50,6 +51,7 @@ class App {
     this.app.use('/token/', tokenRoutes);
     this.app.use('/post/', postRoutes);
     this.app.use('/media/', mediaRoutes);
+    this.app.use('/link/', linkRoutes);
   }
 }
 

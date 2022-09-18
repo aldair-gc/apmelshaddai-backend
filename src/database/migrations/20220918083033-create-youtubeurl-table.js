@@ -1,17 +1,13 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('medias', {
+    await queryInterface.createTable('links', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      originalname: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      filename: {
+      url: {
         type: Sequelize.STRING,
         allowNull: false,
       },
@@ -36,5 +32,5 @@ module.exports = {
     });
   },
 
-  async down(queryInterface) { await queryInterface.dropTable('medias'); },
+  async down(queryInterface) { await queryInterface.dropTable('links'); },
 };
