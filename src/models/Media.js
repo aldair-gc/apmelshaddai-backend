@@ -25,7 +25,7 @@ export default class Media extends Model {
       url: {
         type: Sequelize.VIRTUAL,
         get() {
-          return `${appConfig.url}/medias/${this.getDataValue('filename')}`;
+          return `${appConfig.serverUrl}/medias/${this.getDataValue('filename')}`;
         },
       },
     }, {
