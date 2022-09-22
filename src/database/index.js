@@ -5,8 +5,9 @@ import User from '../models/User';
 import Media from '../models/Media';
 import Link from '../models/Link';
 import Group from '../models/Group';
+import Prayer from '../models/Prayer';
 
-const models = [Post, User, Media, Link, Group];
+const models = [Post, User, Media, Link, Group, Prayer];
 
 const connection = new Sequelize(databaseConfig);
 

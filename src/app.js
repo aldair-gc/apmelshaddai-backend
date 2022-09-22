@@ -16,6 +16,7 @@ import postRoutes from './routes/post';
 import mediaRoutes from './routes/media';
 import linkRoutes from './routes/link';
 import groupRoutes from './routes/group';
+import prayerRoutes from './routes/prayer';
 
 const whiteList = [
   'https://apmelshaddai-server.aldairgc.com',
@@ -56,6 +57,7 @@ class App {
     this.app.use('/media/', mediaRoutes);
     this.app.use('/link/', linkRoutes);
     this.app.use('/group/', groupRoutes);
+    this.app.use('/prayer/', prayerRoutes);
   }
 }
 
