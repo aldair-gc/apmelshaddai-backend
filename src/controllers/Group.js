@@ -3,7 +3,7 @@ import Group from '../models/Group';
 class GroupController {
   async index(req, res) {
     try {
-      const groups = await Group.findAll({ attributes: ['group'] });
+      const groups = await Group.findAll({ attributes: ['group', 'id'] });
       return res.json(groups);
     } catch (err) {
       if (err.errors) return res.status(400).json({ errors: err.errors.map((e) => e.message) });
