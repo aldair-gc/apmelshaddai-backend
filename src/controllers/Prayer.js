@@ -4,7 +4,7 @@ class PrayerController {
   async index(req, res) {
     try {
       const prayers = await Prayer.findAll({
-        attributes: ['id', 'name', 'email', 'tel', 'text'],
+        attributes: ['id', 'name', 'email', 'tel', 'text', 'created_at'],
         order: [['id', 'DESC']],
       });
       return res.json(prayers);
