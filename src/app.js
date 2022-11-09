@@ -19,9 +19,8 @@ import groupRoutes from './routes/group';
 import prayerRoutes from './routes/prayer';
 
 const whiteList = [
-  'https://apmelshaddai-server.aldairgc.com',
-  'https://apmelshaddai.aldairgc.com',
-  'http://127.0.0.1:5173',
+  'https://apmes-server.aldairgc.com',
+  'https://apmes.aldairgc.com',
 ];
 
 const corsOptions = {
