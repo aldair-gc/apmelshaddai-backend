@@ -1,11 +1,11 @@
 require('dotenv').config();
 
 module.exports = {
-  dialect: 'mysql',
+  dialect: 'mariadb',
   database: process.env.DATABASE,
   host: process.env.DATABASE_HOST,
   port: process.env.DATABASE_PORT,
-  user: process.env.DATABASE_USERNAME,
+  username: process.env.DATABASE_USERNAME,
   password: process.env.DATABASE_PASSWORD,
   define: {
     timestamps: true,
@@ -15,7 +15,7 @@ module.exports = {
     updatedAt: 'updated_at',
   },
   dialectOptions: {
-    timezone: 'America/Fortaleza',
+    timezone: 'America/Sao_Paulo',
   },
-  timezone: 'America/Fortaleza',
+  timezone: 'America/Sao_Paulo',
 };

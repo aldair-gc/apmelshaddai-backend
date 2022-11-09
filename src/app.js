@@ -6,7 +6,7 @@ dotenv.config();
 import './database';
 
 import express from 'express';
-// import cors from 'cors';
+import cors from 'cors';
 // import helmet from 'helmet';
 
 import homeRoutes from './routes/home';
@@ -18,21 +18,20 @@ import linkRoutes from './routes/link';
 import groupRoutes from './routes/group';
 import prayerRoutes from './routes/prayer';
 
-// const whiteList = [
-//   'https://apmes-server.aldairgc.com',
-//   'https://apmes.aldairgc.com',
-//   'http://127.0.0.1:4000',
-// ];
+const whiteList = [
+  'https://apmes-server.aldairgc.com',
+  'https://apmes.aldairgc.com',
+];
 
-// const corsOptions = {
-//   origin(origin, callback) {
-//     if (whiteList.indexOf(origin) !== -1 || !origin) {
-//       callback(null, true);
-//     } else {
-//       callback(new Error('Not allowed by CORS'));
-//     }
-//   },
-// };
+const corsOptions = {
+  origin(origin, callback) {
+    if (whiteList.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+};
 
 class App {
   constructor() {
@@ -42,7 +41,7 @@ class App {
   }
 
   middlewares() {
-    // this.app.use(cors(corsOptions));
+    this.app.use(cors(corsOptions));
     // this.app.use(helmet());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(express.json());
