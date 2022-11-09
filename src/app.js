@@ -21,6 +21,7 @@ import prayerRoutes from './routes/prayer';
 const whiteList = [
   'https://apmes-server.aldairgc.com',
   'https://apmes.aldairgc.com',
+  'http://127.0.0.1',
 ];
 
 const corsOptions = {
